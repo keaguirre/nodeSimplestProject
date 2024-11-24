@@ -1,13 +1,29 @@
 import pg from 'pg';
+const { Pool } = pg;
 
-export const pool = new pg.Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'postgres',
-    password: 'password',
-    port: 5432,
+const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, DBPORT } = process.env;
+
+const pool = new Pool({
+  host: PGHOST,
+  database: PGDATABASE,
+  user: PGUSER,
+  password: PGPASSWORD,
+  port: parseInt(DBPORT, 10),
+  ssl: {
+    require: true,
+  },
 });
 
-pool.query('SELECT NOW()').then(res => {
-    console.log(res);
-});
+async function getPgVersion() {
+  const client = await pool.connect();
+  try {
+    const result = await client.query('SELECT version()');
+    console.log(result.rows[0]);
+  } finally {
+    client.release();
+  }
+}
+
+getPgVersion();
+
+export { pool };
