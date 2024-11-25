@@ -1,30 +1,22 @@
 import  { Router } from 'express';
 import { pool } from '../db.js';
+import { getAllUsers, getUserById } from '../controllers/users.controllers.js';
+
 const router = Router();
 
-router.get('/', async (res) => {
+router.get('/', (_, res) => {
     res.status(200).json({message: 'Ruta base API'});
 });
-router.get('/users', async (req, res) => {
-    const { rows } = await pool.query('SELECT * FROM users');
-    res.json(rows);
-});
+
 // router.get('/users', async (req, res) => {
 //     await pool.query('SELECT * FROM users', () => {
 //         res.status(200).json(results.rows);
 //     });
 //     res.send('Obteniendo usuarios');
 // });
-router.get('/users/:id', async (req, res) => {
-    const { userId }  = req.params;
-    const { rows } = await pool.query('SELECT * FROM users WHERE id = $1', [userId]);{
-        if (rows.length > 0) {
-            res.status(200).json(results.rows[0]);
-        }else if (rows.length <= 0) {
-            res.status(404).json({message: 'No se encontro el usuario solicitado'});
-        }
-    }
-});
+router.get('/users', getAllUsers);
+
+router.get('/users/:id', getUserById);
 
 router.post('/users', async (req, res) => {
     const data = req.body;
