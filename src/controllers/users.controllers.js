@@ -41,7 +41,19 @@ export const createUser = async (req, res) => {
         const { rows } = await pool.query('INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *', [data.name, data.email]);
         return rows.length > 0 ? res.json(rows[0]) : res.status(400).json({message: 'Error al insertar el usuario'});
     }catch(error){
-        res.status(400).json({message: 'Error al insertar el usuario'});
+        // getErrorResponse(error, res);
+        switch (error.code){
+            case '23505':
+                res.status(400).json({message: 'El correo ya existe'});
+                break;
+            case '23502':
+                res.status(400).json({message: 'Faltan campos por llenar'});
+                break;
+            default:
+                res.status(400).json({message: 'Error al insertar el usuario'});
+        }
+            res.status(400).json({message: 'El correo ya existe'});
+        
     }
 }
 
@@ -66,3 +78,16 @@ export const deleteUser = async (req, res) => {
         res.status(204);
     }
 };
+
+getErrorResponse = (error, res) => {
+    switch (error.code){
+        case '23505':
+            res.status(400).json({message: 'El correo ya existe'});
+            break;
+        case '23502':
+            res.status(400).json({message: 'Faltan campos por llenar'});
+            break;
+        default:
+            res.status(400).json({message: 'Error al insertar el usuario'});
+    }
+}
