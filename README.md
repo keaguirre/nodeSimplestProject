@@ -1,3 +1,17 @@
+# To do
+- [ ] Check morgan docs
+- [ ] More standards models and controllers for the API (maybe https://github.com/datacharmer/test_db)
+- [ ] Add swagger to the API
+- [ ] Add tests to the API (Jest?)
+- [ ] Choose sqlize or prisma for the ORM
+- [ ] Return html homepage for / route
+- [ ] Add a login with JWT or OAuth2 + bcrypt with salt
+- [ ] Add session management
+- [ ] Add login with google or github?
+
+## Goals
+- [ ] Create basic ops for payments with MercadoPago or Stripe or Paypal or any other payment gateway
+
 # NodeJS PostgreSQL API
     npm init -y
     mkdir src
