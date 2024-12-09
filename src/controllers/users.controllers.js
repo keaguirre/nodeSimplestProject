@@ -1,4 +1,4 @@
-import { pool } from '../db.js';
+import { pool } from '../config.js';
 
 // router.get('/users', async (req, res) => {
 //     await pool.query('SELECT * FROM users', () => {
@@ -79,7 +79,7 @@ export const deleteUser = async (req, res) => {
     }
 };
 
-getErrorResponse = (error, res) => {
+export const getErrorResponse = (error, res) => {
     switch (error.code){
         case '23505':
             res.status(400).json({message: 'El correo ya existe'});

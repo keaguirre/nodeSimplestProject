@@ -1,18 +1,3 @@
-import pg from 'pg';
-const { Pool } = pg;
-
-const { PGHOST, PGDATABASE, PGUSER, PGPASSWORD, DBPORT } = process.env;
-
-const pool = new Pool({
-  host: PGHOST,
-  database: PGDATABASE,
-  user: PGUSER,
-  password: PGPASSWORD,
-  port: parseInt(DBPORT, 10),
-  ssl: {
-    require: true,
-  },
-});
 
 async function getPgVersion() {
   const client = await pool.connect();
@@ -26,4 +11,4 @@ async function getPgVersion() {
 
 getPgVersion();
 
-export { pool };
+export {getPgVersion};
