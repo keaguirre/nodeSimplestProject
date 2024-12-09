@@ -5,6 +5,7 @@
 - [ ] Add tests to the API (Jest?)
 - [ ] Choose sqlize or prisma for the ORM
 - [ ] Add analytics
+- [ ] Send emails with nodemailer or sendgrid
 - [ ] Return html homepage for / route
 - [ ] Add a login with JWT or OAuth2 + bcrypt with salt
 - [ ] Add session management
