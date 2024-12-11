@@ -3,7 +3,7 @@
  * /:
  *   get:
  *     tags:
- *       - users
+ *       - Home
  *     summary: Base API route
  *     responses:
  *       200:
