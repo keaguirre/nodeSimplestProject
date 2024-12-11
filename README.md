@@ -1,7 +1,6 @@
 # To do
-- [ ] Check morgan docs
 - [ ] More standards models and controllers for the API (maybe https://github.com/datacharmer/test_db)
-- [ ] Add swagger to the API
+- [x] Add swagger to the API
 - [ ] Add tests to the API (Jest?)
 - [ ] Choose sqlize or prisma for the ORM
 - [ ] Add analytics
