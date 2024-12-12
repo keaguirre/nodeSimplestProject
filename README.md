@@ -29,3 +29,8 @@
     PGUSER=''
     PGPASSWORD=''
     DBPORT='5432'
+
+## Docker
+    docker build -t node-app .
+    docker run -d --name node-app -p 3000:3000 --env-file=.env node-app
+    Cuando ejecutes el contenedor, deberás tener en el directorio actual el archivo .env para que sean exportados los valores de las variables de entorno.
